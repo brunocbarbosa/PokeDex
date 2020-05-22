@@ -1,33 +1,25 @@
 const axios = require('axios'),
     url = require('../../config/environment');
 
-// Get datas, all datas limited by 151 results, by name and number
+// Get datas, all datas limited by 151 results or by name and number
 module.exports = {
-    async getAll(req, res){
-        const pokemons = 
-            await axios.get(`${url}/pokemon/?limit=151`)
-                .then(res => res.data)
-                .catch(error => console.log(error))
+    async getAll(req, res) {
+        try {
+            const { data } = await axios.get(`${url}/pokemon/?limit=2`);
 
-        return res.json(pokemons)
+            return res.status(200).send(data);
+        } catch (error) {
+            console.error(error);
+        }
     },
 
-    async getByName(req, res){
-        const pokemon = 
-            await axios.get(`${url}/pokemon/${req.params.name}`)
-                .then(res => res.data)
-                .catch(error => console.log(error))
-
-        return res.json(pokemon)
-    },
-
-    async getByNumber(req, res){
-        const pokemon = 
-            await axios.get(`${url}/pokemon/${req.params.number}`)
-                .then(res => res.data)
-                .catch(error => console.log(error))
+    async getOne(req, res){
+        try {
+            const { data } = await axios.get(`${url}/pokemon/${req.params.data}`);
         
-        return res.json(pokemon)
+            return res.status(200).send(data);
+        } catch (error) {
+            console.log(error);
+        }
     }
-
 }

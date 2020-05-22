@@ -4,8 +4,7 @@ const express = require('express'),
 const pokemonsController = require('../controllers/pokemons.controller');
 
 // Pokemons route
-routes.get('/pokemon', pokemonsController.getAll);
-routes.get('/pokemon/:name', pokemonsController.getByName);
-routes.get('/pokemon/:number', pokemonsController.getByNumber);
+routes.get('/api/pokemon', pokemonsController.getAll);
+routes.get('/api/pokemon/:data', pokemonsController.getOne);
 
 module.exports = routes;
