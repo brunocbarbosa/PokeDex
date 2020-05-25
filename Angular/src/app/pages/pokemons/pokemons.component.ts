@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PokemonsService } from './pokemons/pokemons.service';
-import { Pokemons } from './pokemons/pokemons';
-import { PokemonResult } from './pokemons/pokemon.result'
+import { Pokemon } from './pokemons/pokemon';
 
 @Component({
   selector: 'app-pokemons',
@@ -11,45 +11,33 @@ import { PokemonResult } from './pokemons/pokemon.result'
 export class PokemonsComponent implements OnInit {
 
   pokemonsVet: Array<Object> = []
-  pokemon: Pokemons
-  pokemons: Pokemons[] = []
-  //Set a value, you don't have a error that the element don't exist
-  pokemonResult: PokemonResult = {
-    count: 0,
-    previous: '',
-    next: '',
-    results: []
-  }
+  pokemon: Pokemon
+  pokemons: Pokemon[] = []
+
 
   constructor(private PokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
-    this.PokemonsService.getAll().subscribe(pokemonResult => {
-      console.log(pokemonResult)
-        this.pokemonResult = pokemonResult
-    })
+    // this.PokemonsService.getByData(1).subscribe(
+    //   pokemon => console.log(pokemon)
+    // )
+    this.getAllPokemons();
   }
 
-  // getAllPokemons(){
-  //   let vet = []
-  //   for(let i=1; i<=2; i++){ // wtf?
-  //     this.PokemonsService.getByName(i).subscribe(
-  //       pokemon => {
-  //         vet = [
+  getAllPokemons(){
+    let vet = []
+    for(let i=1; i<=18; i++){ // wtf?
+      this.PokemonsService.getByData(i).subscribe(
+        pokemon => {
+          // this.pokemon = pokemon
 
-  //            {
-  //              "name" : pokemon.name,
-  //              "image" : pokemon.sprites.front_default
-  //            }
-
-  //         ]
-
-  //         this.pokemonsVet.push(vet)
-
-  //       }
-  //     )
-  //   }
-  //   console.log(this.pokemonsVet)
-  // }
-
+          this.pokemons.push(pokemon)
+          this.pokemons.sort((a,b) => {
+            return a.id > b.id ? 1 : a.id < b.id ? -1 : 0
+          })
+        }
+      )
+    }
+    console.log(this.pokemons)
+  }
 }

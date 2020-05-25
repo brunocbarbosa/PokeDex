@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../../environments/environment';
-import { Pokemons } from './pokemons';
 import { PokemonResult } from './pokemon.result'
+import { Pokemon } from './pokemon';
 
 const API = environment.ApiUrl;
 
@@ -18,7 +18,7 @@ export class PokemonsService {
     return this.http.get<PokemonResult>(`${API}/pokemon`)
   }
 
-  getByName(number){
-    return this.http.get<Pokemons>(`${API}/pokemon/${number}`)
+  getByData(data){
+    return this.http.get<Pokemon>(`${API}/pokemon/${data}`)
   }
 }

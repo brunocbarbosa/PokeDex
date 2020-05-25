@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PokemonsComponent } from './pokemons.component';
+import { CardModule } from '../../shared/components/card/card.module';
 
 
 
@@ -10,7 +11,8 @@ import { PokemonsComponent } from './pokemons.component';
     PokemonsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CardModule
   ]
 })
 export class PokemonsModule { }

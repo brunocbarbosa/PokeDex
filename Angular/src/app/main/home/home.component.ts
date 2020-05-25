@@ -12,9 +12,6 @@ export class HomeComponent implements OnInit {
 
   pokemonCount: PokemonResult = {
     count: 0,
-    previous: '',
-    next: '',
-    results: []
   }
 
   constructor(private pokemonService: PokemonsService) { }

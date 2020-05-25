@@ -5,7 +5,7 @@ const axios = require('axios'),
 module.exports = {
     async getAll(req, res) {
         try {
-            const { data } = await axios.get(`${url}/pokemon/?limit=2`);
+            const { data } = await axios.get(`${url}/pokemon/?limit=10`);
 
             return res.status(200).send(data);
         } catch (error) {

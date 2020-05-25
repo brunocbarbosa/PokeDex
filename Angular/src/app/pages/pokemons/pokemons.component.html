@@ -1,25 +1,7 @@
-
-<p>
-  Number of pokemons found: <b [textContent]="pokemonResult.count"></b>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let pokemon of pokemonResult.results">
-      <td>{{ pokemon.name }}</td>
-      <td>{{ pokemon.url }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<div>
-  <a href={{pokemonResult.previous}}>Previous</a>
-<a href={{pokemonResult.next}}>Next</a>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2" *ngFor="let pokemon of pokemons">
+      <app-card [url]="pokemon.sprites.front_default" [id]="pokemon.id" [name]="pokemon.name"></app-card>
+    </div>
+  </div>
 </div>
