@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PokemonsComponent } from './pokemons.component';
 import { CardModule } from '../../shared/components/card/card.module';
+import { ModalModule } from '../../shared/components/modal/modal.module';
 
 
 
@@ -12,7 +13,8 @@ import { CardModule } from '../../shared/components/card/card.module';
   ],
   imports: [
     CommonModule,
-    CardModule
+    CardModule,
+    ModalModule
   ]
 })
 export class PokemonsModule { }

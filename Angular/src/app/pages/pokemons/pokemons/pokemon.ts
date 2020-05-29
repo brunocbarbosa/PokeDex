@@ -1,3 +1,7 @@
+import { Types } from './types';
+import { Stats } from './stats';
+
+
 export interface Pokemon {
   id?: number;
   name: string;
@@ -9,7 +13,7 @@ export interface Pokemon {
     front_default?: string,
     back_default?: string
   };
-  stats?: [];
-  types?: [];
+  stats?: [Stats];
+  types?: [Types];
   weight?: number
 }

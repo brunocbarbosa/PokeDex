@@ -10,9 +10,9 @@ import { Pokemon } from './pokemons/pokemon';
 })
 export class PokemonsComponent implements OnInit {
 
-  pokemonsVet: Array<Object> = []
   pokemon: Pokemon
   pokemons: Pokemon[] = []
+  id : number;
 
 
   constructor(private PokemonsService: PokemonsService) {}
@@ -38,6 +38,13 @@ export class PokemonsComponent implements OnInit {
         }
       )
     }
-    console.log(this.pokemons)
+  }
+
+  viewPokemon(id){
+    this.PokemonsService.getByData(id).subscribe(
+      pokemon => {console.log(pokemon);this.pokemon = pokemon}
+    )
+
+
   }
 }
