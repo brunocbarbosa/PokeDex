@@ -9,42 +9,43 @@
 </div>
 
 <!-- View Pokemon Modal -->
-<app-modal titleModal="Pokemon" idModal="idViewPokemon">
- <div class="container">
-   <div *ngIf="pokemon">
-    <img class="rounded mx-auto d-block img-fluid mr-3" [src]="pokemon.sprites.front_default">
-    <table>
-      <tr>
-        <th>Number:</th>
-        <td>{{ pokemon.id }}</td>
-      </tr>
-      <tr>
-        <th>Name:</th>
-        <td>{{ pokemon.name }}</td>
-      </tr>
-      <tr>
-        <th>Height:</th>
-        <td>{{ pokemon.height }} fts</td>
-      </tr>
-      <tr>
-        <th>Weight:</th>
-        <td>{{ pokemon.weight }} pds</td>
-      </tr>
-      <tr>
-        <th>Type:</th>
-       <div >
-        <td *ngFor="let types of pokemon.types">{{ types.type.name }}, </td>
-        </div>
-      </tr>
-      <tr>
-        <th>Stats:</th>
-        <div >
-          <td *ngFor="let stats of pokemon.stats">{{ stats.stat.name }}, </td>
-        </div>
-      </tr>
-    </table>
-   </div>
- </div>
+<app-modal titleModal="Pokemon" idModal="idViewPokemon" (btnChangeShiny)="changeShiny()">
+  <div class="container">
+    <div *ngIf="pokemon">
+      <div *ngIf="!shiny; else elseShiny ">
+        <img class="rounded mx-auto d-block img-fluid mr-3" [src]="pokemon.sprites.front_default">
+      </div>
+      <ng-template #elseShiny>
+        <img class="rounded mx-auto d-block img-fluid mr-3" [src]="pokemon.sprites.front_shiny">
+      </ng-template>
+      <table>
+        <tr>
+          <th>Number:</th>
+          <td>{{ pokemon.id }}</td>
+        </tr>
+        <tr>
+          <th>Name:</th>
+          <td>{{ pokemon.name }}</td>
+        </tr>
+        <tr>
+          <th>Height:</th>
+          <td>{{ pokemon.height }} fts</td>
+        </tr>
+        <tr>
+          <th>Weight:</th>
+          <td>{{ pokemon.weight }} pds</td>
+        </tr>
+        <tr>
+          <th>Type:</th>
+          <td>{{ types }}</td>
+        </tr>
+        <tr>
+          <th>Stats:</th>
+          <td>{{ stats }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </app-modal>
 
 

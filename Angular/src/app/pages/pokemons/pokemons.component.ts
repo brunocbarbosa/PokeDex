@@ -12,25 +12,22 @@ export class PokemonsComponent implements OnInit {
 
   pokemon: Pokemon
   pokemons: Pokemon[] = []
+  types: string;
+  stats: string;
   id : number;
+  shiny: boolean = false;
 
 
   constructor(private PokemonsService: PokemonsService) {}
 
   ngOnInit(): void {
-    // this.PokemonsService.getByData(1).subscribe(
-    //   pokemon => console.log(pokemon)
-    // )
     this.getAllPokemons();
   }
 
   getAllPokemons(){
-    let vet = []
     for(let i=1; i<=18; i++){ // wtf?
       this.PokemonsService.getByData(i).subscribe(
         pokemon => {
-          // this.pokemon = pokemon
-
           this.pokemons.push(pokemon)
           this.pokemons.sort((a,b) => {
             return a.id > b.id ? 1 : a.id < b.id ? -1 : 0
@@ -41,10 +38,21 @@ export class PokemonsComponent implements OnInit {
   }
 
   viewPokemon(id){
+    this.shiny = false
     this.PokemonsService.getByData(id).subscribe(
-      pokemon => {console.log(pokemon);this.pokemon = pokemon}
+      pokemon => {
+        this.types = pokemon.types.map(types => types.type.name).join(', ');
+        this.stats = pokemon.stats.map(stats => stats.stat.name).join(', ');
+        this.pokemon = pokemon;
+      }
     )
+  }
 
-
+  changeShiny(){
+    if(!this.shiny){
+      this.shiny = true;
+    }else{
+      this.shiny = false;
+    }
   }
 }

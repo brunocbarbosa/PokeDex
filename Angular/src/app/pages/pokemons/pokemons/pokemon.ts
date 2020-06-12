@@ -10,10 +10,12 @@ export interface Pokemon {
   location_area_encounters?: string;
   sprites?:
   {
-    front_default?: string,
-    back_default?: string
+    front_default?: string;
+    back_default?: string;
+    front_shiny?: string;
+    back_shiny?: string;
   };
   stats?: [Stats];
   types?: [Types];
-  weight?: number
+  weight?: number;
 }
