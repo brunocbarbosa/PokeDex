@@ -1,9 +1,10 @@
-const axios = require('axios'),
-    url = require('../../config/environment');
+import { Request, Response } from 'express';
+import axios from 'axios';
+import url from '../../config/environment';
 
-// Get datas, all datas limited by 151 results or by name and number
-module.exports = {
-    async getAll(req, res) {
+// Get datas, all datas limited by number of results or by name and number
+class PokemonController {
+    async getAll(req: Request, res: Response) {
         try {
             const { data } = await axios.get(`${url}/pokemon/?limit=10`);
 
@@ -11,9 +12,9 @@ module.exports = {
         } catch (error) {
             console.error(error);
         }
-    },
+    }
 
-    async getOne(req, res){
+    async getOne(req: Request, res: Response){
         try {
             const { data } = await axios.get(`${url}/pokemon/${req.params.data}`);
         
@@ -23,3 +24,5 @@ module.exports = {
         }
     }
 }
+
+export default PokemonController;
